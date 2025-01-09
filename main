@@ -1,0 +1,12 @@
+import hashlib
+
+def validate_address(address):
+    checksum = hashlib.sha256(hashlib.sha256(address[:-4].encode()).digest()).digest()
+    return checksum[:4] == address[-4:]
+
+if __name__ == "__main__":
+    address = input("Enter Bitcoin address: ")
+    if validate_address(address):
+        print("Valid address.")
+    else:
+        print("Invalid address.")
